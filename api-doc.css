@@ -1,0 +1,74 @@
+.api-doc {
+	font-family: 'Open Sans', sans-serif;
+	padding: 10px;
+	-webkit-font-smoothing: antialiased;
+	color: #282828;
+}
+
+.api-doc h1 {
+	font-size: 36px;
+	font-weight: normal;
+}
+
+.api-doc h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.api-doc h3 {
+	font-size: 12px;
+	font-weight: normal;
+	border-bottom: 1px solid #eee;
+	padding-top: 13px;
+	padding-bottom: 3px;
+}
+
+.api-doc .description {
+	font-size: 14px;
+}
+
+.api-doc .post {
+	color: #f5a623;
+}
+
+.api-doc .method {
+	font-size: 16px;
+	font-weight: 600;
+	margin-right: 8px;
+}
+
+.api-doc .url {
+	font-size: 12px;
+	border: 1px solid #e6e6e6;
+	border-radius: 3px;
+	color: #282828;
+    background-color: #f8f8f8;
+    padding: 6px 10px;
+}
+
+.api-doc .headers {
+    font-size: 12px;
+}
+
+.api-doc .headers dt {
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.api-doc .headers dd {
+	margin: 0;
+}
+
+.api-doc .body {
+	font-family: "Courier", sans-serif;
+	font-size: 12px;
+	border: 1px solid #e6e6e6;
+	border-radius: 3px;
+	color: #282828;
+    background-color: #f8f8f8;
+    padding: 6px 10px;
+}
+
+.api-doc .token {
+	color: #2f9c0a;
+}
