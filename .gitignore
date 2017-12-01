@@ -1,4 +1,5 @@
 .DS_Store
+config/config.php
 vendor
 nbproject
 /nbproject/private/

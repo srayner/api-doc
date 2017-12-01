@@ -11,6 +11,11 @@
         "PHP"
 	],
 	"homepage": "https://github.com/srayner/api-doc",
+        "autoload": {
+            "psr-4": {
+                "ApiDoc\\": "src/"
+            }
+        },
 	"require": {
 	    "doctrine/orm": "2.5.12"
 	},

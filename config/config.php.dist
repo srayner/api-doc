@@ -1,0 +1,17 @@
+<?php
+
+return [
+    'db' => [
+        'dbname'   => 'api-doc',
+        'user'     => 'user',
+        'password' => 'secret',
+        'host'     => 'localhost',
+        'driver'   => 'pdo_mysql',
+    ],
+    'doctrine' => [
+        'entityPaths' => [
+            __DIR__ . '/../src/Entity'
+        ]
+    ]
+];
+
