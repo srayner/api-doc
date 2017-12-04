@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 config/config.php
 vendor
 nbproject

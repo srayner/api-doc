@@ -6,7 +6,7 @@ use ApiDoc\Helper\MagicGetterAndSetterTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM/Entity
+ * @ORM\Entity
  */
 class Header
 {

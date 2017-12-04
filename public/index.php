@@ -16,6 +16,7 @@ $config = require(__DIR__ . '/../config/config.php');
 $dbParams = $config['db'];
 $paths = $config['doctrine']['entityPaths'];
 
+$isDevMode = true;
 $doctrineConfig = Setup::createConfiguration($isDevMode);
 $driver = new AnnotationDriver(new AnnotationReader(), $paths);
 

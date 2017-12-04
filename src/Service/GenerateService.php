@@ -3,6 +3,7 @@
 namespace ApiDoc\Service;
 
 use ApiDoc\Entity\Collection;
+use ApiDoc\Entity\Item;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use RuntimeException;
@@ -29,9 +30,17 @@ class GenerateService
         }
         
         $collection = new Collection();
-        $collection->name = $obj->name;
-        
+        $collection->name = $obj->info->name;
         $this->entityManager->persist($collection);
+
+        foreach($obj->item as $sourceItem) {
+            $item = new Item();
+            $item->name = $sourceItem->name;
+            $item->method = $sourceItem->request->method;
+            $item->collection = $collection;
+            $this->entityManager->persist($item);
+        }
+
         $this->entityManager->flush();
     }
 }

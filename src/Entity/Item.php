@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM/Entity
+ * @ORM\Entity
  */
 class Item
 {
@@ -47,7 +47,7 @@ class Item
     protected $url;
     
     /**
-     * @ORM/OneToMany(targetEntity=Header", mappedBy="item")
+     * @ORM\OneToMany(targetEntity="Header", mappedBy="item")
      */
     protected $headers;
     
