@@ -2,7 +2,7 @@
 -- Table structure for table `collection`
 DROP TABLE IF EXISTS `collection`;
 CREATE TABLE `collection` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -10,7 +10,7 @@ CREATE TABLE `collection` (
 -- Table structure for table `item`
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `collection_id` int(11) DEFAULT NULL,
   `name` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` mediumtext COLLATE utf8_unicode_ci,
@@ -25,7 +25,7 @@ CREATE TABLE `item` (
 -- Table structure for table `header`
 DROP TABLE IF EXISTS `header`;
 CREATE TABLE `header` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) DEFAULT NULL,
   `key` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `value` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
