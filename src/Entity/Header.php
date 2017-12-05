@@ -21,7 +21,7 @@ class Header
     protected $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Item", inversedBy="headers")
+     * @ORM\ManyToOne(targetEntity="Item", inversedBy="headers", cascade="persist")
      * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */
     protected $item;

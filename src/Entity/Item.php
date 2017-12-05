@@ -64,4 +64,15 @@ class Item
     {
         $this->headers = new ArrayCollection();
     }
+
+    /**
+     * Adds a header to this item.
+     *
+     * @param Header $header
+     */
+    public function addHeader(Header $header)
+    {
+        $this->headers[] = $header;
+        $header->item = $this;
+    }
 }

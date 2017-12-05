@@ -42,12 +42,11 @@ class GenerateService
             $item->description = $sourceItem->request->description;
             $item->collection = $collection;
             $item->body = $this->extractRequestBody($sourceItem->request->body);
-            $this->entityManager->persist($item);
             $headers = $this->extractRequestHeaders($sourceItem->request->header);
             foreach ($headers as $header) {
-                $header->item = $item;
-                $this->entityManager->persist($header);
+                $item->addHeader($header);
             }
+            $this->entityManager->persist($item);
         }
 
         $this->entityManager->flush();
