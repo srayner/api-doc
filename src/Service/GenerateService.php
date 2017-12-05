@@ -3,6 +3,7 @@
 namespace ApiDoc\Service;
 
 use ApiDoc\Entity\Collection;
+use ApiDoc\Entity\Header;
 use ApiDoc\Entity\Item;
 use Doctrine\ORM\EntityManager;
 use Exception;
@@ -37,10 +38,43 @@ class GenerateService
             $item = new Item();
             $item->name = $sourceItem->name;
             $item->method = $sourceItem->request->method;
+            $item->url = $sourceItem->request->url->raw;
+            $item->description = $sourceItem->request->description;
             $item->collection = $collection;
+            $item->body = $this->extractRequestBody($sourceItem->request->body);
             $this->entityManager->persist($item);
+            $headers = $this->extractRequestHeaders($sourceItem->request->header);
+            foreach ($headers as $header) {
+                $header->item = $item;
+                $this->entityManager->persist($header);
+            }
         }
 
         $this->entityManager->flush();
+    }
+
+    public function extractRequestBody($body)
+    {
+        $result = '';
+        if (property_exists($body, 'mode')) {
+            if ($body->mode == 'raw') {
+                $result = $body->raw;
+            }
+        }
+
+        return $result;
+    }
+
+    public function extractRequestHeaders($headers)
+    {
+        $result = [];
+        foreach ($headers as $sourceHeader) {
+            $header = new Header();
+            $header->key = $sourceHeader->key;
+            $header->value = $sourceHeader->value;
+            $result[] = $header;
+        }
+
+        return $result;
     }
 }
