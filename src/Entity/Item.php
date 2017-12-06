@@ -48,7 +48,7 @@ class Item
     protected $url;
     
     /**
-     * @ORM\OneToMany(targetEntity="Header", mappedBy="item")
+     * @ORM\OneToMany(targetEntity="Header", mappedBy="item", cascade="persist")
      */
     protected $headers;
     

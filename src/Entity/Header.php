@@ -21,18 +21,18 @@ class Header
     protected $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Item", inversedBy="headers", cascade="persist")
+     * @ORM\ManyToOne(targetEntity="Item", inversedBy="headers")
      * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */
     protected $item;
     
     /** 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="`key`")
      */
     protected $key;
     
     /** 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="`value`")
      */
     protected $value;
 }
