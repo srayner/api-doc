@@ -1,0 +1,1916 @@
+{
+	"info": {
+		"name": "NDI Admin Tests",
+		"_postman_id": "34e613a2-7d37-0974-dc53-356ec5a48159",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"grant_type\": \"password\",\n    \"client_id\": \"3_b9i0mzi569wk0k4w404s0og08gsgc4g0o4ww8cc040ocs4gc4\",\n    \"username\": \"russell.walker@marmalade.co.uk\",\n    \"password\": \"hellorussell\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/oauth/v2/token",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"oauth",
+						"v2",
+						"token"
+					]
+				},
+				"description": "Here is a test description.\n\n| Tables        | Are           | Cool  |\n| ------------- |:-------------:| -----:|\n| col 3 is      | right-aligned | $1600 |\n| col 2 is      | centered      |   $12 |\n| zebra stripes | are neat      |    $1 |"
+			},
+			"response": []
+		},
+		{
+			"name": "get renewal invite",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/renewal-invite/20",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"renewal-invite",
+						"20"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "resend renewal invite",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"inviteId\" : 103219\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/renewal-invite",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"renewal-invite"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Policies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"status\": \"UNPAID\",\n   \"businessType\": \"NEW\",\n   \"term\": \"1\",\n   \"effectiveStartDateTime\": \"2016-09-25 00:00:00\",\n   \"fromDate\": \"2017-09-25 01:25:00\",\n   \"toDate\": \"2017-09-25 01:30:00\",\n   \"modification\": null,\n   \"broker\": null,\n   \"internal\": null,\n   \"customerId\": 512418,\n   \"customerFirstName\": \"Joshua\",\n   \"customerLastName\": \"Sharp\",\n   \"pagination\": { \"recordsPerPage\": \"1\", \"currentPage\": \"0\" }\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/policies",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"policies"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Charge Descriptions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/charge-descriptions",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"charge-descriptions"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Charges List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"reference\" : \"\",\n    \"description\" : \"\",\n    \"pagination\" : {\n        \"recordsPerPage\" : 20,\n        \"page\" : 1\n    }\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/charges",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"charges"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fromDate\": \"2017-09-01 00:00:00\",\n\t\"toDate\": \"2017-09-30 23:59:59\",\n\t\"lastName\": \"Smith\",\n\t\"policyNumber\": \"\",\n\t\"policyId\": \"\",\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 5,\n\t\t\"pageNo\": 2\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/customers",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"customers"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Refunds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 2\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/refunds",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"refunds"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Policy Ranges",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"effectiveStartDateTime\": \"2017-09-20 00:00:00\",\n\t\"status\": \"INFORCE\",\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 5,\n\t\t\"pageNo\": 3\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/policy-ranges?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"policy-ranges"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Policy Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"policyId\": 57328}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/policies/details",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"policies",
+						"details"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Declines",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fromDate\": \"2017-10-10 00:00:00\",\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/declines",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"declines"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Register Box",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = FAIL\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"FAIL\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"vehicleId\": 1,\n\t\"imei\": \"1234\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/register-box",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"register-box"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Renewal Declines",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"toDate\": \"2017-10-20 00:00:00\",\n\t\"fromDate\": \"2000-09-20 00:00:00\",\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/renewal-declines",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"renewal-declines"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Renewal Scores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/renewal-scores",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"renewal-scores"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Renewals Due",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 2\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/renewals-due",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"renewals-due"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "resend renewal invite",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"inviteId\" : 1\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/renewal-invite",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"renewal-invite"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Declines CSV Export",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fromDate\": \"2017-10-11 00:00:00\",\n\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/declines/export/csv",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"declines",
+						"export",
+						"csv"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Fmg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"toDate\": \"2017-10-20 00:00:00\",\n\t\"fromDate\": \"2017-10-10 00:00:00\",\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 10,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/fmg",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"fmg"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Fmg CSV Export",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"toDate\": \"2017-10-20 00:00:00\",\n\t\"fromDate\": \"2017-10-10 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/fmg/export/csv",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"fmg",
+						"export",
+						"csv"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Red Journeys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 1,\n\t\t\"pageNo\": 2\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/red-journeys",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"red-journeys"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Quickquotes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\"fromDate\": \"2017-10-09 00:00:00\",\n\t\"siteName\": \"ford\",\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 100,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/qq/quotes",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"qq",
+						"quotes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Quickquotes CSV Export",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\t\"fromDate\": \"2017-10-09 00:00:00\",\n\t\"id\": 550708,\n\t\"pagination\": {\n\t\t\"recordsPerPage\": 100,\n\t\t\"pageNo\": 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/qq/quotes/export/csv",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"qq",
+						"quotes",
+						"export",
+						"csv"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Quickquote Summary Report",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/qq/summary-report",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"qq",
+						"summary-report"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Charge New",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"reference\": \"XQ22667901\",\n\t\"amount\" : 5.2,\n\t\"description\" : 12\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/charge",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"charge"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Charge Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = FAIL\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"FAIL\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1234,\n\t\"hash\" : \"an_incorrect_hash\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/charge",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"charge"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Advisors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/advisors",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"advisors"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Box Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fromDate\"  : \"2017-09-06\",\n\t\"toDate\"    : \"2017-11-01\",\n\t\"make\"      : \"\",\n\t\"model\"     : \"\",\n\t\"regNo\"     : \"\",\n\t\"imei\"      : \"\",\n\t\"pagination\" : {\n        \"recordsPerPage\": 10,\n        \"pageNo\"        : 1\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/box-status",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"box-status"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.wearemarmalade.vm/ndi/Box status CSV",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fromDate\"  : \"2017-09-06\",\n\t\"toDate\"    : \"2017-11-01\",\n\t\"make\"      : \"\",\n\t\"model\"     : \"\",\n\t\"regNo\"     : \"\",\n\t\"imei\"      : \"\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/box-status/export/csv",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"box-status",
+						"export",
+						"csv"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EDI messages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"policyNumber\" : \"XQ22668022\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/edi",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"edi"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EDI correspondence count",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"policyNumber\" : \"XQ24825099\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/edi-correspondence/count",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"edi-correspondence",
+						"count"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get staff notes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/staff-notes/26697",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"staff-notes",
+						"26697"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "change email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"loginId\" : 12,\n    \"email\" : \"steve@test.com\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/customer/change-email",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"customer",
+						"change-email"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get customer cancellation reasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/cancellation-reasons/customer",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"cancellation-reasons",
+						"customer"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get insurer cancellation reasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/cancellation-reasons/insurer",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"cancellation-reasons",
+						"insurer"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Cancellation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f88bfede-f306-4d4a-b022-7d5e4108b945",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"status = SUCCESS\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"SUCCESS\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"policyId\"                : 610132,\n\t\"claimInPeriod\"           : \"N\",\n    \"insurerLed\"              : \"Y\",\n    \"cancellationDate\"        : \"2017-12-25\",\n    \"cancellationReason\"      : 20,\n    \"racServiceUsed\"          : \"N\",\n    \"cancellationReasonOther\" : \"some other reason text\",\n    \"telematics\"              : \"Y\",\n    \"removeBox\"               : \"Y\"\n}"
+				},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/cancellation",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"cancellation"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get customer guid",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://api.wearemarmalade{{domain_suffix}}/ndi/admin/v1/customer/check-guid?guid=ACB74CD82B004325B41BB456ACA8493F",
+					"protocol": "http",
+					"host": [
+						"api",
+						"wearemarmalade{{domain_suffix}}"
+					],
+					"path": [
+						"ndi",
+						"admin",
+						"v1",
+						"customer",
+						"check-guid"
+					],
+					"query": [
+						{
+							"key": "guid",
+							"value": "ACB74CD82B004325B41BB456ACA8493F",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
